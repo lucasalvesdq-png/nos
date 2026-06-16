@@ -1,0 +1,156 @@
+/* ==========================================================
+   VARIÁVEIS DE TEMA EXCLUSIVAS DO BANNER INLINE
+   (Integradas perfeitamente com a arquitetura da sua folha)
+   ========================================================== */
+
+/* --- PADRÃO / TEMA CLARO --- */
+:root, [data-bs-theme="light"] {
+    /* 15% de opacidade baseados nas suas cores claras para criar um tom pastel suave */
+    --wv-alert-bg: rgba(0, 123, 255, 0.06);          /* Suave variação do seu --azul-info */
+    --wv-alert-border: rgba(0, 123, 255, 0.2);       /* Borda sutil */
+    --wv-alert-icon: var(--azul-info);               /* Seu Azul Info oficial (#007BFF) */
+    --wv-alert-title: var(--cor-texto-principal);    /* Seu texto escuro principal (#1F2937) */
+    --wv-alert-text: var(--cor-texto-secundario);    /* Seu texto secundário (#6B7280) */
+    
+    /* Controle do botão fechar (X) */
+    --wv-alert-close: var(--cor-texto-label);        /* Seu tom cinza (#ACACAC) */
+    --wv-alert-close-hover-text: var(--dark-ui);     /* Seu hover padrão escuro */
+    --wv-alert-close-hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+/* --- TEMA ESCURO (Dark Mode) --- */
+[data-bs-theme="dark"] {
+    /* Tons baseados no seu --bg-card (#10151c) e variações translúcidas do seu azul */
+    --wv-alert-bg: rgba(31, 111, 235, 0.1) !important;      /* Baseado no seu --dark-ui Dark (#1F6FEB) */
+    --wv-alert-border: rgba(59, 130, 246, 0.25) !important; /* Baseado no seu --azul-primary Dark (#3B82F6) */
+    --wv-alert-icon: var(--azul-hover) !important;          /* Seu azul vibrante dark (#60A5FA) */
+    --wv-alert-title: var(--cor-texto-principal) !important;/* Seu texto claro principal (#F0EDE8) */
+    --wv-alert-text: var(--cor-texto-secundario) !important;/* Seu texto cinza confortável (#9BA3B0) */
+    
+    /* Controle do botão fechar (X) */
+    --wv-alert-close: var(--cor-texto-label) !important;
+    --wv-alert-close-hover-text: #FFFFFF !important;
+    --wv-alert-close-hover-bg: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ==========================================================
+   ESTILIZAÇÃO PREMIUM DO NOVO BANNER INLINE (#new-inline-alert)
+   ========================================================== */
+
+/* Neutraliza os wrappers nativos do Webrun (Prevenção de quebras de layout) */
+#viswisebannerstyles, 
+#viswisebannerstyles label {
+    height: auto !important;
+    min-height: auto !important;
+    white-space: normal !important;
+}
+
+/* Container Estrutural do Alerta */
+#new-inline-alert {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-padrao, 'Inter', sans-serif) !important;
+    background-color: var(--wv-alert-bg) !important;
+    border: 1px solid var(--wv-alert-border) !important;
+    border-radius: var(--saas-radius, 12px) !important; /* Alinhado ao raio SaaS dos seus botões */
+    padding: 16px !important;
+    box-shadow: var(--saas-shadow) !important; /* Utiliza a sua sombra nativa */
+    
+    /* Transições de tema fluidas baseadas na sua regra (.25s) */
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+    
+    /* Animação suave para evitar o efeito de flicker */
+    animation: slideInAlert 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+/* Layout Flexbox Interno */
+#new-inline-alert .flex {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+#new-inline-alert .shrink-0 {
+    flex-shrink: 0;
+}
+
+#new-inline-alert .flex-1 {
+    flex: 1 1 0%;
+}
+
+#new-inline-alert .space-y-1 > * + * {
+    margin-top: 4px;
+}
+
+/* Elemento: Ícone Informativo Lateral */
+#new-inline-alert .text-blue-500 {
+    color: var(--wv-alert-icon) !important;
+    margin-top: 2px;
+    font-size: 16px !important;
+    transition: color 0.25s ease !important;
+}
+
+/* Elemento: Título (Dica de Preenchimento Automático) */
+#new-inline-alert h4.text-xs {
+    font-family: var(--font-padrao, 'Inter', sans-serif) !important;
+    font-size: 12px !important; /* Igualado aos seus labels superiores */
+    font-weight: 700 !important;
+    color: var(--wv-alert-title) !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase !important;
+    margin: 0;
+    transition: color 0.25s ease !important;
+}
+
+/* Elemento: Texto Descritivo */
+#new-inline-alert p.text-xs {
+    font-family: var(--font-padrao, 'Inter', sans-serif) !important;
+    font-size: 13px !important;
+    color: var(--wv-alert-text) !important;
+    line-height: 1.5;
+    font-weight: 500 !important;
+    margin: 0;
+    transition: color 0.25s ease !important;
+}
+
+/* Negritos de ênfase dentro do texto */
+#new-inline-alert p.text-xs .font-semibold {
+    font-weight: 700 !important;
+    color: var(--wv-alert-title) !important;
+}
+
+/* Elemento: Botão de Fechar (X) */
+#new-inline-alert button {
+    background: none !important;
+    border: none !important;
+    padding: 6px !important;
+    cursor: pointer !important;
+    color: var(--wv-alert-close) !important;
+    border-radius: var(--radius-btn, 7px) !important; /* Utiliza seu raio de botão */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: var(--transicao-padrao) !important; /* Sua transição global */
+}
+
+/* Hover do Botão Fechar */
+#new-inline-alert button:hover {
+    color: var(--wv-alert-close-hover-text) !important;
+    background-color: var(--wv-alert-close-hover-bg) !important;
+}
+
+/* Micro-animação de Entrada */
+@keyframes slideInAlert {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
